@@ -1,4 +1,4 @@
-package avlTree;
+package weichhart.georg.avlTree;
 
 public class AbstractNode {
 	
