@@ -1,10 +1,10 @@
 package weichhart.georg.avlTree;
 
-public class AbstractNode {
+public class AbstractTreeNode {
 	
-	public static final AbstractNode NullNode = new AbstractNode();
+	public static final AbstractTreeNode NullNode = new AbstractTreeNode();
 	
-	public AbstractNode() {
+	public AbstractTreeNode() {
 	}
 
 	public boolean isBST (int smaller, int higher) {
@@ -21,51 +21,51 @@ public class AbstractNode {
 	
 	public static void main(String[] args) {
 		
-		Node r = new Node(12);
+		TreeNode r = new TreeNode(12);
 		
-		r.addSimple(new Node(9));
-		r.addSimple(new Node(8));
-		r.addSimple(new Node(10));
-		r.addSimple(new Node(25));
-		r.addSimple(new Node(24));
-		r.addSimple(new Node(8));
-		r.addSimple(new Node(20));
-		r.addSimple(new Node(26));
+		r.addSimple(new TreeNode(9));
+		r.addSimple(new TreeNode(8));
+		r.addSimple(new TreeNode(10));
+		r.addSimple(new TreeNode(25));
+		r.addSimple(new TreeNode(24));
+		r.addSimple(new TreeNode(8));
+		r.addSimple(new TreeNode(20));
+		r.addSimple(new TreeNode(26));
 
 		System.out.println(r.toString());
 		System.out.println(r.isBST());
 		
-		r = new Node(10);
-		r.addSimple(new Node(9));
-		r.addSimple(new Node(8));
-		r.addSimple(new Node(7));
-		r.addSimple(new Node(6));
-		r.addSimple(new Node(5));
-		r.addSimple(new Node(4));
+		r = new TreeNode(10);
+		r.addSimple(new TreeNode(9));
+		r.addSimple(new TreeNode(8));
+		r.addSimple(new TreeNode(7));
+		r.addSimple(new TreeNode(6));
+		r.addSimple(new TreeNode(5));
+		r.addSimple(new TreeNode(4));
 		
 		System.out.println(r.toString());
 		System.out.println(r.isBST());
 	}
 	
-	public static class Node extends AbstractNode {
+	public static class TreeNode extends AbstractTreeNode {
 
-		AbstractNode Left;
-		AbstractNode Right;
+		AbstractTreeNode Left;
+		AbstractTreeNode Right;
 		
 		int Value = Integer.MIN_VALUE;
 		
-		public Node(int Value) {
-			this(Value, AbstractNode.NullNode,AbstractNode.NullNode);
+		public TreeNode(int Value) {
+			this(Value, AbstractTreeNode.NullNode,AbstractTreeNode.NullNode);
 		}
 		
-		public Node(int Value, AbstractNode Left, AbstractNode Right) {
+		public TreeNode(int Value, AbstractTreeNode Left, AbstractTreeNode Right) {
 			this.Left = Left; 
 			this.Right = Right;
 			this.Value = Value;
 		}
 		
 		public boolean isLeave() {
-			return this.Left == AbstractNode.NullNode && this.Right == AbstractNode.NullNode;
+			return this.Left == AbstractTreeNode.NullNode && this.Right == AbstractTreeNode.NullNode;
 		}
 		
 		public boolean isBST() {
@@ -82,44 +82,46 @@ public class AbstractNode {
 			return false;
 		}
 		
-		public void add(Node newN) {
+		public void add(TreeNode newN) {
 			addSimple(newN);
 			if(this.Left.getHeight() > this.Right.getHeight() +1) {
 				//not balanced
 				// rotate right
 				
+				
 			} else if(this.Right.getHeight() > this.Left.getHeight() +1) {
 				//not balanced
+				
 				
 			}
 		}
 		
-		public void addSimple(Node newN) {
+		public void addSimple(TreeNode newN) {
 			if(newN.Value > this.Value) {
-				if(this.Right == AbstractNode.NullNode) {
+				if(this.Right == AbstractTreeNode.NullNode) {
 					setRight(newN);
 				} else {
-					((Node)this.Right).add(newN);
+					((TreeNode)this.Right).add(newN);
 				}
 			} else {
-				if(this.Left == AbstractNode.NullNode) {
+				if(this.Left == AbstractTreeNode.NullNode) {
 					setLeft(newN);
 				} else {
-					((Node)this.Left).add(newN);
+					((TreeNode)this.Left).add(newN);
 				}
 			}
 		}
 		
 		
 		
-		public AbstractNode setRight (AbstractNode Right) {
-			AbstractNode result = this.Right;
+		public AbstractTreeNode setRight (AbstractTreeNode Right) {
+			AbstractTreeNode result = this.Right;
 			this.Right = Right;
 			return result;
 		}
 
-		public AbstractNode setLeft(AbstractNode Left) {
-			AbstractNode result = this.Left;
+		public AbstractTreeNode setLeft(AbstractTreeNode Left) {
+			AbstractTreeNode result = this.Left;
 			this.Left = Left;
 			return result;
 		}
