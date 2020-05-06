@@ -2,31 +2,33 @@ package weichhart.georg.minHeap;
 
 import java.util.ArrayList;
 
-import weichhart.georg.minHeap.AbstractNode.TerminalNode;
+import weichhart.georg.network.AbstractEdge;
+import weichhart.georg.network.AbstractNode;
+import weichhart.georg.network.Node;
 
 public class MinHeap {
 
-	ArrayList<AbstractNode> nodes = new ArrayList<AbstractNode>();
+	ArrayList<Node> nodes = new ArrayList<>();
 
 	protected void swap(int i, int ii) {
-		AbstractNode I = nodes.get(i);
-		AbstractNode II = nodes.get(ii);
+		Node I = nodes.get(i);
+		Node II = nodes.get(ii);
 		nodes.set(i, II);
 		nodes.set(ii, I);
 	}
 
-	public int getIdx(AbstractNode n) {
+	public int getIdx(Node n) {
 		return nodes.indexOf(n);
 	}
 
-	public void addNodes(AbstractNode n) {
+	public void addNodes(Node n) {
 		if (insert(n))
 			for (AbstractEdge nxt : n.getEdgesTo()) {
-				addNodes(nxt.getTo());
+				addNodes((Node)nxt.getTo());
 			}
 	}
 
-	protected boolean insert(AbstractNode n) {
+	protected boolean insert(Node n) {
 		if (nodes.contains(n))
 			return false;
 
@@ -45,17 +47,17 @@ public class MinHeap {
 
 	public AbstractNode extractMin() {
 		if (nodes.size() == 0)
-			return TerminalNode.TERMINAL_NODE;
+			return AbstractNode.TERMINAL_NODE;
 		if (nodes.size() == 1)
 			return nodes.remove(0);
 
-		AbstractNode root = nodes.get(0);
+		Node root = nodes.get(0);
 		nodes.set(0, nodes.remove(nodes.size() - 1));
 		heapify(0);
 		return root;
 	}
 
-	public void update(AbstractNode n) {
+	public void update(Node n) {
 		int i = getIdx(n);
 		if (nodes.get(parent(i)).getPathValue() > nodes.get(i).getPathValue()) {
 			while (i != 0 && nodes.get(parent(i)).getPathValue() > nodes.get(i).getPathValue()) {
