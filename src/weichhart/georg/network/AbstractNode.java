@@ -21,9 +21,10 @@ public class AbstractNode {
 			EdgesTo = new LinkedList<AbstractEdge>();
 	}
 
-	public List<AbstractEdge> getEdgesTo() {
+	public List<AbstractEdge> getEdges() {
 		return EdgesTo;
 	}
+
 
 	public int getPathValue() {
 		return Integer.MAX_VALUE;
@@ -51,7 +52,7 @@ public class AbstractNode {
 		StringBuilder sb = new StringBuilder(getId());
 		if (!observed.contains(this)) {
 			observed.add(this);
-			for (AbstractEdge e : getEdgesTo()) {
+			for (AbstractEdge e : getEdges()) {
 				if (e != AbstractEdge.NO_EDGE)
 					sb.append("-").append(e.toStringBuilder(observed));
 			}

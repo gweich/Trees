@@ -6,6 +6,17 @@ import weichhart.georg.network.AbstractEdge;
 import weichhart.georg.network.AbstractNode;
 import weichhart.georg.network.Node;
 
+/**
+ * https://en.wikipedia.org/wiki/Heap_(data_structure)
+ * The heap is one maximally efficient implementation of an abstract data type called a priority queue, 
+ * a heap is not a sorted structure; it can be regarded as being partially ordered
+ * The maximum number of children each node can have depends on the type of heap
+ * 
+ * Operation	find-min	delete-min	insert		decrease-key	meld (merge 2 trees)
+ * Binary   	O(1)		O(log n)	O(log n)	O(log n)		O(n)
+ * @author gweich
+ *
+ */
 public class MinHeap {
 
 	ArrayList<Node> nodes = new ArrayList<>();
@@ -21,11 +32,17 @@ public class MinHeap {
 		return nodes.indexOf(n);
 	}
 
-	public void addNodes(Node n) {
-		if (insert(n))
-			for (AbstractEdge nxt : n.getEdgesTo()) {
-				addNodes((Node)nxt.getTo());
+	public boolean addAllNodes(Node n) {
+		boolean result = insert(n);
+		if (result)
+			for (AbstractEdge nxt : n.getEdges()) {
+				result = addAllNodes((Node)nxt.getTo());
 			}
+		return result;
+	}
+	
+	public boolean addNode(Node n) {
+		return insert(n);
 	}
 
 	protected boolean insert(Node n) {

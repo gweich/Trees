@@ -4,6 +4,9 @@ import java.util.LinkedList;
 
 public class AbstractEdge {
 	public static final AbstractEdge NO_EDGE = new AbstractEdge();
+	
+	protected AbstractEdge() {
+	}
 
 	public AbstractNode getTo() {
 		return AbstractNode.TERMINAL_NODE;
