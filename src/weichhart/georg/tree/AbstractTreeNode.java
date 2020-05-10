@@ -18,5 +18,13 @@ public class AbstractTreeNode {
 	public int getHeight() {
 		return 0;
 	}
+	
+	/**
+	 * 
+	 * @return  right.height - left.height
+	 */
+	public int getBalance() {
+		return 0;
+	}
 
 }

@@ -6,27 +6,27 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		TreeNode r = new TreeNode(12);
+		TreeNode r = new AVLTree(12);
 		
-		r.add(new TreeNode(9));
-		r.add(new TreeNode(8));
-		r.add(new TreeNode(10));
-		r.add(new TreeNode(25));
-		r.add(new TreeNode(24));
-		r.add(new TreeNode(8));
-		r.add(new TreeNode(20));
-		r.add(new TreeNode(26));
+		r = r.add(new AVLTree(9));
+		r = r.add(new AVLTree(8));
+		r = r.add(new AVLTree(10));
+		r = r.add(new AVLTree(25));
+		r = r.add(new AVLTree(24));
+		r = r.add(new AVLTree(8));
+		r = r.add(new AVLTree(20));
+		r = r.add(new AVLTree(26));
 
 		System.out.println(r.toString());
 		System.out.println(r.isBST());
 		
-		r = new TreeNode(10);
-		r.add(new TreeNode(9));
-		r.add(new TreeNode(8));
-		r.add(new TreeNode(7));
-		r.add(new TreeNode(6));
-		r.add(new TreeNode(5));
-		r.add(new TreeNode(4));
+		r = new AVLTree(10);
+		r = r.add(new AVLTree(9));
+		r = r.add(new AVLTree(8));
+		r = r.add(new AVLTree(7));
+		r = r.add(new AVLTree(6));
+		r = r.add(new AVLTree(5));
+		r = r.add(new AVLTree(4));
 		
 		System.out.println(r.toString());
 		System.out.println(r.isBST());
