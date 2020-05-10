@@ -1,6 +1,6 @@
 package weichhart.georg.network;
 
-import java.util.LinkedList;
+import java.util.List;
 
 public class AbstractEdge {
 	public static final AbstractEdge NO_EDGE = new AbstractEdge();
@@ -16,7 +16,8 @@ public class AbstractEdge {
 		return Integer.MIN_VALUE;
 	}
 
-	public StringBuilder toStringBuilder(LinkedList<AbstractNode> observed) {
-		return new StringBuilder();
+	public StringBuilder toStringBuilder(List<AbstractNode> observed, StringBuilder sb) {
+		sb.append('x');
+		return sb;
 	}
 }

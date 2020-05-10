@@ -1,19 +1,18 @@
 package weichhart.georg.network;
 
-import java.util.LinkedList;
+import java.util.List;
 
 public class Edge extends AbstractEdge {
 
 	protected int Weight = Integer.MAX_VALUE;
 	protected AbstractNode To = AbstractNode.TERMINAL_NODE;
 
-	public StringBuilder toStringBuilder(LinkedList<AbstractNode> observed) {
+	public StringBuilder toStringBuilder(List<AbstractNode> observed, StringBuilder sb) {
 		// System.out.println("-E"+Weight+"-");
-		StringBuilder sb = new StringBuilder(Integer.toString(Weight));
-		if (getTo() != AbstractNode.TERMINAL_NODE) {
-			sb.append("->");
-			sb.append(getTo().toStringBuilder(observed));
-		}
+		if(sb==null)
+			sb = new StringBuilder();
+		sb.append(Integer.toString(Weight)).append("->");
+		getTo().toStringBuilder(observed,sb);
 		return sb;
 	}
 

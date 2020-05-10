@@ -48,6 +48,11 @@ public class Node extends AbstractNode {
 		StringBuilder sb = new StringBuilder(getId());
 		if (getSelectedSource() != TERMINAL_NODE) {
 			sb.append("-");
+			for(AbstractEdge e : getSelectedSource().EdgesTo) {
+				if(e.getTo().equals(this))
+					sb.append(e.getWeight());
+			}
+			sb.append("->");
 			sb.append(((Node) getSelectedSource()).toResult());
 		}
 		return sb.toString();

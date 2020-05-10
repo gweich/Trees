@@ -43,21 +43,23 @@ public class AbstractNode {
 	}
 	
 	public String toString() {
-		StringBuilder result = toStringBuilder(new LinkedList<AbstractNode>());
+		StringBuilder result = toStringBuilder(new LinkedList<AbstractNode>(), new StringBuilder());
 		return result.toString();
 	}
 
-	public StringBuilder toStringBuilder(LinkedList<AbstractNode> observed) {
+	public StringBuilder toStringBuilder(List<AbstractNode> observed, StringBuilder sb) {
 		// System.out.println(id);
-		StringBuilder sb = new StringBuilder(getId());
+		if(sb==null)
+			sb = new StringBuilder();
 		if (!observed.contains(this)) {
 			observed.add(this);
-			for (AbstractEdge e : getEdges()) {
-				if (e != AbstractEdge.NO_EDGE)
-					sb.append("-").append(e.toStringBuilder(observed));
+			for (AbstractEdge e : EdgesTo) {
+				sb.append(getId()).append("-");
+				e.toStringBuilder(observed, sb);
+				sb.append(';');
 			}
 		} else
-			sb.append("|");
+			sb.append(getId()).append(';');
 		return sb;
 	}
 	
