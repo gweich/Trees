@@ -1,5 +1,6 @@
 package weichhart.georg.array;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +33,9 @@ public class StringProperties {
 		start = System.nanoTime();
 		result = isPermutation3(test,test2);
 		System.out.println("duration p3 " + (System.nanoTime()-start) + " r:" + result);
+		
+		start = System.nanoTime();
+		System.out.println("duration s1 " + (System.nanoTime()-start) + " r:" + Arrays.toString(quickSort(test+test2)));
 	}
 	
 	/**
@@ -163,5 +167,39 @@ public class StringProperties {
 		}
 		
 		return true;
+	}
+	
+	public static char[] quickSort(String s) {
+		return quickSort(s.toCharArray(),0,s.length()-1);
+	}
+	public static char[] quickSort(char[] input, int left, int right) {
+		int index = partition(input, left, right);
+		if (left< index - 1) // Sort left half
+			quickSort(input, left, index - 1);
+		if (index< right) // Sort right half
+			quickSort(input, index, right);
+		return input;
+	}
+	
+	public static int partition(char[] input, int left, int right) {
+		char pivot = input[(left+right)/2];
+		while (left<= right) {
+			//Find element on left that should be on right
+			while (input[left] < pivot) left++;
+			// Find element on right that should be on left
+			while (input[right] > pivot) right--;
+			//Swap elements, and move left and right indices
+			if (left<= right) {
+				swap(input, left, right); // swaps elements
+				left++;
+				right--;
+			}
+		}
+		return left;
+	}
+	public static void swap(char[] input, int posA, int posB) {
+		char x = input[posA];
+		input[posA]=input[posB];
+		input[posB]=x;
 	}
 }
